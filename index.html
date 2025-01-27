@@ -5,42 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfect Number Checker</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f0f0f0;
+            background: linear-gradient(135deg, #f8b195, #f67280, #c06c84);
+            background-size: 200% 200%;
+            animation: gradientBG 10s ease infinite;
         }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
             text-align: center;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
         }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
+
+        h1 {
+            font-size: 3rem;
+            color: #444;
+            margin-bottom: 20px;
         }
-        button:hover {
-            background-color: #0056b3;
+
+        p {
+            font-size: 2rem;
+            color: #666;
+            margin-bottom: 15px;
         }
+
         input {
             padding: 10px;
             font-size: 16px;
-            border: 1px solid #ccc;
+            border: 1px solid #ddd;
             border-radius: 5px;
-            margin-bottom: 10px;
             width: 100%;
+            margin-bottom: 15px;
+            transition: box-shadow 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+        }
+
+        button {
+            padding: 16px 35px;
+            font-size: 18px;
+            border: none;
+            border-radius: 25px;
+            background: #6a0572;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background: #450345;
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #444;
         }
     </style>
 </head>
@@ -50,7 +93,7 @@
         <p>Enter a number to check if it's a perfect number.</p>
         <input type="number" id="numberInput" placeholder="Enter a number" />
         <button id="checkButton">Check</button>
-        <p id="result" style="margin-top: 20px; font-weight: bold;"></p>
+        <p id="result"></p>
     </div>
     <script>
         document.getElementById('checkButton').addEventListener('click', function() {
@@ -69,8 +112,10 @@
 
             if (sum === number) {
                 document.getElementById('result').textContent = `${number} is a perfect number.`;
+                document.getElementById('result').style.color = 'green';
             } else {
                 document.getElementById('result').textContent = `${number} is not a perfect number.`;
+                document.getElementById('result').style.color = 'red';
             }
         });
     </script>
